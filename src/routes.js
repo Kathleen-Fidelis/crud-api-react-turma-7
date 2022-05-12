@@ -5,6 +5,7 @@ import Home from './pages/Home'
 import About from './pages/About'
 import RegisterCustomer from './pages/RegisterCustomer'
 import NotFound from './pages/NotFound'
+import HomeCustomer from "./pages/HomeCustomer"
 
 export const Routes = () => {
     return (
@@ -13,8 +14,7 @@ export const Routes = () => {
             <Route path="/home" component={Home} />
             <Route path="/about" component={About} />
             <Route path="/register" component={RegisterCustomer} />
-            <Route path="/listcustomer" component={NotFound} />
-            <Route path="/editcustomer/:id" component={NotFound} />
+            <Route path="/listcustomer" component={HomeCustomer} />
             <Route component={NotFound} />
         </Switch>
     )

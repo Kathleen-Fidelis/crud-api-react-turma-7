@@ -3,9 +3,12 @@ import axios from 'axios'
 import Header from '../../components/template/Header'
 import { Container, Row, Col, Form, Button } from 'react-bootstrap'
 import { customerModel } from '../../models'
+import { baseUrl } from '../../environments'
+
 
 function RegisterCustomer(props) {
 
+    const URL = `${baseUrl}/customer`
     const [states, setStates] = useState([])
     const [customer, setCustomer] = useState(customerModel)
     // const [name, setName] = useState('')
@@ -14,20 +17,42 @@ function RegisterCustomer(props) {
     // const [tel, setTel] = useState('')
     // const [state, setState] = useState('')
     const [successRegister, SetSuccessRegister] = useState(false)
+    const [customers, setCustomers] = useState([])
 
     const getStates = () => {
-        axios.get('http://localhost:8080/states')
+        axios.get('http://localhost:3001/states')
             .then((response) => {
                 setStates(response.data)
             })
     }
 
+    const getCustomers = () => {
+        axios.get(`${URL}/customer`)
+            .then((response) => {
+                setCustomers(response.data)
+            })
+    }
+
     const register = () => {
-        axios.post('http://localhost:8080/customer', customer)
+        axios.post(`${URL}`, customer)
             .then((response) => {
                 SetSuccessRegister(true)
             })
     }
+
+    // const putCustomer = () => {
+    //     axios.put(`${URL}/${customer.id}`, customer)
+    //         .then((response) => {
+    //             getCustomers()
+    //         })
+    // }
+
+    // const deleteCustomer = (id) => {
+    //     axios.delete(`${URL}/${id}`)
+    //         .then((response) => {
+    //             getCustomers()
+    //         })
+    // }
 
     // const register = () => {
 
@@ -47,6 +72,7 @@ function RegisterCustomer(props) {
 
     useEffect(() => {
         getStates()
+        getCustomers()
     }, [])
 
     return (
@@ -63,30 +89,30 @@ function RegisterCustomer(props) {
                                 <Form.Label>Nome:</Form.Label>
                                 <Form.Control type="text"
                                     value={customer.name}
-                                    onChange={(event) => { setCustomer({...customer, name: event.target.value}) }} />
+                                    onChange={(event) => { setCustomer({ ...customer, name: event.target.value }) }} />
                             </Form.Group>
                             <Form.Group className="mb-3" controlId="age">
                                 <Form.Label>Idade:</Form.Label>
                                 <Form.Control type="text"
                                     value={customer.age}
-                                    onChange={(event) => { setCustomer({...customer, age: event.target.value}) }} />
+                                    onChange={(event) => { setCustomer({ ...customer, age: event.target.value }) }} />
                             </Form.Group>
                             <Form.Group className="mb-3" controlId="document">
                                 <Form.Label>CPF:</Form.Label>
                                 <Form.Control type="text"
                                     value={customer.document}
-                                    onChange={(event) => { setCustomer({...customer, document: event.target.value}) }} />
+                                    onChange={(event) => { setCustomer({ ...customer, document: event.target.value }) }} />
                             </Form.Group>
                             <Form.Group className="mb-3" controlId="tel">
                                 <Form.Label>Telefone:</Form.Label>
                                 <Form.Control type="text"
                                     value={customer.tel}
-                                    onChange={(event) => { setCustomer({...customer, tel: event.target.value}) }} />
+                                    onChange={(event) => { setCustomer({ ...customer, tel: event.target.value }) }} />
                             </Form.Group>
                             <Form.Group className="mb-3">
                                 <Form.Label>Estado</Form.Label>
                                 <Form.Select
-                                    onChange={(event) => { setCustomer({...customer, state: event.target.value}) }}>
+                                    onChange={(event) => { setCustomer({ ...customer, state: event.target.value }) }}>
                                     <option>Selecione um estado</option>
                                     {
                                         states.map((item) => {
@@ -152,6 +178,7 @@ function RegisterCustomer(props) {
                 </Row>
             </Container>
 
+           
         </>
     )
 }
