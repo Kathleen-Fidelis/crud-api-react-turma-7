@@ -6,43 +6,41 @@ import { baseUrl } from '../../environments'
 function Customer(props) {
 
     const URL = `${baseUrl}/Customer`
-    const [tasks, setTasks] = useState([])
+    const [customers, setCustomers] = useState([])
 
     useEffect(() => {
-        getTasks()
+        getCustomers()
     }, [])
 
-    const getTasks = () => {
+    const getCustomers = () => {
         axios.get(`${URL}`)
         .then((response) => {
-            setTasks(response.data)
+            setCustomers(response.data)
         })
     }
 
-    const editDescription = (task) => {
-        if (task.description === '') {
-            return
-        }
-
-        axios.put(`${URL}/${task.id}`, task)
+    const editCustomer = (customer) => {
+        axios.put(`${URL}/${customer.id}`, customer)
         .then((response) => {
-            getTasks()
+            getCustomers()
         })
     }
 
-    const deleteTask = (id) => {
+    const deleteCustomer = (id) => {
         axios.delete(`${URL}/${id}`)
         .then((response) => {
-            getTasks()
+            getCustomers()
         })
     }
 
     return(
         <>
-            <CustomerList tasks={tasks} 
-                delete={deleteTask}
-                editDescription={editDescription}
-            />
+            <CustomerList customers={customers} 
+                delete={deleteCustomer}
+                editCustomer={editCustomer}/>
+                {/* //usando apenas um função para editar */}
+                {/* changeCustomer={changeCustomer}/> */}
+            
         </>
     )
 }

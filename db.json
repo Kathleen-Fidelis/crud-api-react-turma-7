@@ -1,7 +1,7 @@
 {
   "todo": [
     {
-      "description": "Teste 41",
+      "description": "Teste 45",
       "done": false,
       "id": 2
     },
@@ -19,17 +19,12 @@
       "description": "teste 4",
       "done": false,
       "id": 6
-    },
-    {
-      "description": "cvjhgc",
-      "done": false,
-      "id": 7
     }
   ],
   "customer": [
     {
       "name": "André",
-      "age": "28",
+      "age": "27",
       "document": "123456789",
       "tel": "19245-545",
       "state": 1,
@@ -76,7 +71,7 @@
       "id": 7
     },
     {
-      "name": "teste51",
+      "name": "teste3",
       "age": "44",
       "document": "89878748768417",
       "tel": "1687178871",
@@ -84,18 +79,10 @@
       "id": 8
     },
     {
-      "name": "teste51",
-      "age": "44",
-      "document": "6861851",
-      "tel": "1687178871",
-      "state": "1",
-      "id": 9
-    },
-    {
-      "name": "teste55",
-      "age": "19",
-      "document": "6861851",
-      "tel": "1687178871",
+      "name": "teste2",
+      "age": "25",
+      "document": "56328768",
+      "tel": "28761893",
       "state": "1",
       "id": 10
     }

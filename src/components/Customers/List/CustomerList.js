@@ -6,8 +6,8 @@ import { Container, ListGroup, Row,
 
 function CustomerList(props) {
 
-    const tasks = props.tasks || []
-    const [task, setTask] = useState({});
+    const customers = props.customers || []
+    const [customer, setCustomer] = useState({});
     const [show, setShow] = useState(false);
     const [showEdit, setShowEdit] = useState(false);
     const [successDelete, setSuccessDelete] = useState(false);
@@ -19,8 +19,8 @@ function CustomerList(props) {
 
    
 
-    const renderTask = () => {
-        return tasks.map((item) => {
+    const renderCustomer = () => {
+        return customers.map((item) => {
             return (
                 <ListGroup.Item key={item.id}>
                     <Row className="itemTask">
@@ -35,14 +35,14 @@ function CustomerList(props) {
                         <Col>
                             <Button className="mx-3" variant="secondary"
                                 onClick={() => {
-                                    setTask(item)
+                                    setCustomer(item)
                                     handleShowEdit()
                                 }}>
                                 Editar
                             </Button>
                             <Button className="mx-3" variant="danger"
                                 onClick={() => {
-                                    setTask(item)
+                                    setCustomer(item)
                                     handleShow()
                                 }}>
                                 Deletar
@@ -70,7 +70,7 @@ function CustomerList(props) {
             <Row>
                 <Col>
                     <ListGroup variant="flush">
-                        {renderTask()}
+                        {renderCustomer()}
                     </ListGroup>
                 </Col>
             </Row>
@@ -84,28 +84,28 @@ function CustomerList(props) {
                     <Form.Group className="mb-3" controlId="name">
                         <Form.Label>Nome:</Form.Label>
                         <Form.Control type="text" placeholder="Digite o novo nome do usuario"
-                            value={task.name}
-                            onChange={event => setTask({...task, name: event.target.value})} 
+                            value={customer.name}
+                            onChange={event => setCustomer({...customer, name: event.target.value})} 
                         />
                         <Form.Label>Idade:</Form.Label>
                         <Form.Control type="text" placeholder="Digite a novo data de nascimento do usuario"
-                            value={task.age}
-                            onChange={event => setTask({...task, age: event.target.value})} 
+                            value={customer.age}
+                            onChange={event => setCustomer({...customer, age: event.target.value})} 
                         />
                         <Form.Label>CPF:</Form.Label>
                          <Form.Control type="text" placeholder="Digite o CPF atualizado do usuario"
-                            value={task.document}
-                            onChange={event => setTask({...task, document: event.target.value})} 
+                            value={customer.document}
+                            onChange={event => setCustomer({...customer, document: event.target.value})} 
                         />
                         <Form.Label>Telefone:</Form.Label>
                          <Form.Control type="text" placeholder="Digite a novo telefone do usuario"
-                            value={task.tel}
-                            onChange={event => setTask({...task, tel: event.target.value})} 
+                            value={customer.tel}
+                            onChange={event => setCustomer({...customer, tel: event.target.value})} 
                         />
                         <Form.Label>Estado:</Form.Label>
                          <Form.Control type="text" placeholder="Digite o novo estado do usuario"
-                            value={task.state}
-                            onChange={event => setTask({...task, state: event.target.value})} 
+                            value={customer.state}
+                            onChange={event => setCustomer({...customer, state: event.target.value})} 
                         />
 
 
@@ -116,7 +116,7 @@ function CustomerList(props) {
                         Close
                     </Button>
                     <Button variant="success" onClick={() => {
-                        props.editDescription(task)
+                        props.editCustomer(customer)
                         handleCloseEdit()
                         }
                     }>
@@ -130,13 +130,13 @@ function CustomerList(props) {
                 <Modal.Header closeButton>
                     <Modal.Title>Apagar Usuario</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>Deseja apagar o Usuario: <strong>{task.name}</strong></Modal.Body>
+                <Modal.Body>Deseja apagar o Usuario: <strong>{customer.name}</strong></Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
                         Close
                     </Button>
                     <Button variant="danger" onClick={() => {
-                        props.delete(task.id)
+                        props.delete(customer.id)
                         handleClose()
                         setSuccessDelete(true)
                         setTimeout(
